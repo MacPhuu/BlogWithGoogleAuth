@@ -20,6 +20,8 @@ const ArticlePreviewFavoriteButton: React.FC<ArticlePreviewFavoriteButtonProps> 
     setIsLoadingFavorite(true)
     const onFinally = () => setIsLoadingFavorite(false)
 
+    console.log('clicked')
+
     if (favorited) {
       favoritesAction.favoriteArticle(slug, {
         onSuccess: () => {

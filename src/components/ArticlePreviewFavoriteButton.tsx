@@ -20,13 +20,13 @@ const ArticlePreviewFavoriteButton: React.FC<ArticlePreviewFavoriteButtonProps> 
     setIsLoadingFavorite(true)
     const onFinally = () => setIsLoadingFavorite(false)
 
-    console.log('clicked')
+    console.log('originalFavorited', originalFavorited)
 
-    if (favorited) {
+    if (!favorited) {
       favoritesAction.favoriteArticle(slug, {
         onSuccess: () => {
           setFavorited(prev => !prev)
-          setFavoritesCount(prev => prev - 1)
+          setFavoritesCount(prev => prev + 1)
         },
         onFinally,
       })
@@ -35,7 +35,7 @@ const ArticlePreviewFavoriteButton: React.FC<ArticlePreviewFavoriteButtonProps> 
     favoritesAction.unfavoriteArticle(slug, {
       onSuccess: () => {
         setFavorited(prev => !prev)
-        setFavoritesCount(prev => prev + 1)
+        setFavoritesCount(prev => prev - 1)
       },
       onFinally,
     })

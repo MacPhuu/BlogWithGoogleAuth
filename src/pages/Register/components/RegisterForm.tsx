@@ -8,7 +8,7 @@ const RegisterForm = () => {
   } = useAuthContext()
 
   useLayoutEffect(() => {
-    document.title = 'Register - Conduit'
+    document.title = 'Register - Vaults'
   }, [])
 
   const usernameRef = useRef<HTMLInputElement>(null)

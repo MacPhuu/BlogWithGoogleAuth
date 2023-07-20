@@ -24,15 +24,16 @@ const Profile = () => {
     profileActions.getProfile(username, {
       onSuccess: (fetchedProfile: IProfile) => {
         setProfile(fetchedProfile)
-        document.title = `@${fetchedProfile.username} - Conduit`
+        document.title = `@${fetchedProfile.username} - Vaults`
       },
       onFinally: () => setIsFetchingProfile(false),
     })
   }
 
   useEffect(() => {
+    if (!username) return
     fetchProfileByParam()
-  }, [])
+  }, [username])
 
   const isSelfProfile = useMemo(() => profile?.username === currentUser?.username, [profile, currentUser])
 

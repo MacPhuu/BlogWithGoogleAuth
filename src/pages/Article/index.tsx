@@ -26,7 +26,7 @@ const Article = () => {
         setArticle(result)
         setFavoritesCount(result.favoritesCount)
         setFavorited(result.favorited)
-        document.title = `${result.title} - Conduit`
+        document.title = `${result.title} - Vaults`
       },
       onFinally: () => setIsFetchingArticle(false),
     })

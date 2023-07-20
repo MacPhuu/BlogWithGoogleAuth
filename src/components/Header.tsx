@@ -16,7 +16,7 @@ const Header = () => {
     <nav className="navbar navbar-light">
       <div className="container">
         <Link className="navbar-brand" to={ROUTER.HOME}>
-          conduit
+          vaults
         </Link>
         <ul className="nav navbar-nav pull-xs-right">
           <li className="nav-item">

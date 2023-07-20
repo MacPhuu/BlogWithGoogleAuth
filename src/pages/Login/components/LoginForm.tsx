@@ -1,7 +1,7 @@
 import { LoginResponse } from '@/configs/api/response'
 import { useAuthContext } from '@/hooks/context'
 import { IUser } from '@/types/models/IUser'
-import { FormEvent, memo, useLayoutEffect, useRef} from 'react'
+import { FormEvent, memo, useLayoutEffect, useRef } from 'react'
 
 const LoginForm = () => {
   const {
@@ -28,7 +28,7 @@ const LoginForm = () => {
         onSuccess: (result: LoginResponse) => {
           errorMessagesRef.current = []
           localStorage.setItem('token', result.user.token)
-          
+
           window.location.reload()
         },
         onError: ([errorsKey, errors]) => {
@@ -38,22 +38,21 @@ const LoginForm = () => {
       }
     )
   }
-  const handleLoginWithGoogle =()=>{
+  const handleLoginWithGoogle = () => {
     loginWithGoogle({
-      onSuccess: (user: IUser) => {
+      onSuccess: (_user: IUser) => {
         errorMessagesRef.current = []
-        
         window.location.reload()
       },
       onError: ([errorsKey, errors]) => {
         errorMessagesRef.current = [...errorMessagesRef.current, ...errors]
         errorMessagesKeyRef.current = errorsKey
       },
-    });
+    })
   }
-  
+
   useLayoutEffect(() => {
-    document.title = 'Login - Conduit'
+    document.title = 'Login - Vaults'
   }, [])
 
   return (
@@ -79,9 +78,15 @@ const LoginForm = () => {
           {isFetching ? 'Loading...' : 'Sign in'}
         </button>
       </form>
-      <button onClick={handleLoginWithGoogle}  disabled={isFetching} className="btn btn-lg btn-primary pull-xs-right" type="submit">
-          {isFetching ? 'Loading...' : 'Login With Google'}
-        </button>
+      <button
+        style={{ marginRight: '20px' }}
+        onClick={handleLoginWithGoogle}
+        disabled={isFetching}
+        className="btn btn-lg btn-primary pull-xs-right"
+        type="submit"
+      >
+        {isFetching ? 'Loading...' : 'Login With Google'}
+      </button>
     </>
   )
 }

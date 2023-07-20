@@ -7,15 +7,15 @@ const Home = () => {
   const [articlesType, setArticlesType] = useState<string>('FEED')
 
   useEffect(() => {
-    document.title = 'Home — Conduit'
+    document.title = 'Home — Vaults'
   }, [])
 
   return (
     <div className="home-page">
       <div className="banner">
         <div className="container">
-          <h1 className="logo-font">conduit</h1>
-          <p>A place to share your knowledge.</p>
+          <h1 className="logo-font">vaults</h1>
+          <p>Share your expertise.</p>
         </div>
       </div>
 

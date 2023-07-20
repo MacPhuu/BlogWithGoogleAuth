@@ -24,6 +24,7 @@ const PostCommentForm = () => {
       {
         onSuccess: () => {
           if (commentBodyRef.current) commentBodyRef.current.value = ''
+          window.location.reload()
         },
         onFinally: () => setIsPostingComment(false),
       }

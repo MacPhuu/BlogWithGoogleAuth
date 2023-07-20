@@ -1,3 +1,40 @@
+:root {
+  --color-primary: #e4d00a;
+}
+
 .cursor-pointer {
   cursor: pointer;
+}
+
+.navbar-brand {
+  color: var(--color-primary) !important;
+}
+
+.home-page .banner {
+  background: var(--color-primary) !important;
+}
+
+.nav-pills.outline-active .nav-link.active {
+  border-bottom: 2px solid var(--color-primary) !important;
+  color: var(--color-primary) !important;
+}
+
+.article-meta .info .author {
+  color: var(--color-primary) !important;
+}
+
+footer .logo-font {
+  color: var(--color-primary) !important;
+}
+
+.page-item.active .page-link,
+.page-item.active .page-link:focus,
+.page-item.active .page-link:hover {
+  background-color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+  color: #fff !important;
+}
+
+.page-item:last-child .page-link {
+  /* color: var(--color-primary) !important; */
 }

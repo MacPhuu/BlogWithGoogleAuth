@@ -4,7 +4,7 @@ interface ArticleNavMenuItemProps {
   type: string
   children: ReactNode
   articlesType: string
-  setArticlesType: React.Dispatch<React.SetStateAction<string>>
+  setArticlesType: React.Dispatch<React.SetStateAction<any>>
 }
 
 const ArticleNavMenuItem: React.FC<ArticleNavMenuItemProps> = ({ children, articlesType, setArticlesType, type }) => (

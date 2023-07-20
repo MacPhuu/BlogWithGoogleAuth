@@ -1,7 +1,8 @@
+import { commentActions } from '@/actions/comment'
 import { ROUTER } from '@/configs/router'
 import { IComment } from '@/types/models/IComment'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 interface CommentItemProps {
   comment: IComment
@@ -9,6 +10,13 @@ interface CommentItemProps {
 
 const CommentItem: React.FC<CommentItemProps> = ({ comment }) => {
   const authorURL = `${ROUTER.PROFILE_BASE}/${comment.author.username}`
+  const { slug } = useParams()
+  const handleDeleteComment = () => {
+    if (!slug) return
+    commentActions.deleteComment(slug, comment.id.toString(), {
+      onSuccess: () => window.location.reload(),
+    })
+  }
 
   return (
     <div className="card">
@@ -24,6 +32,9 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment }) => {
           {comment.author.username}
         </Link>
         <span className="date-posted">{comment.createdAt}</span>
+        <span className="mod-options">
+          <i className="ion-trash-a" onClick={handleDeleteComment}></i>
+        </span>
       </div>
     </div>
   )

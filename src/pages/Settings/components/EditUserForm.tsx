@@ -22,7 +22,7 @@ const EditUserForm = () => {
     const email = emailRef.current?.value || ''
     const password = passwordRef.current?.value || ''
 
-    editCurrentUser({ user: { bio, email, image, password, username } })
+    editCurrentUser({ user: { bio, email, image, password, username } }, { onSuccess: () => window.location.reload() })
   }
   return (
     <form onSubmit={handleSubmitEdit}>

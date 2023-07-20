@@ -21,7 +21,7 @@ const ArticlesList: React.FC<ArticlesListProps> = ({ articlesType }) => {
   const [currentPage, setCurrentPage] = useState<number>(1)
 
   const fetchArticlesList = () => {
-    const offset = (currentPage - 1) * 10
+    const offset = (currentPage - 1) * LIST_LIMIT
 
     const onSuccess = (response: GetArticlesResponse) => {
       setArticles(response.articles)
@@ -53,6 +53,10 @@ const ArticlesList: React.FC<ArticlesListProps> = ({ articlesType }) => {
     setIsFetchingArticles(true)
     fetchArticlesList()
   }, [articlesType, currentPage])
+
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [articlesType])
 
   const handlePaginationPageClick = (page: number) => {
     setCurrentPage(page)

@@ -5,8 +5,8 @@ import { apiCall } from '@/configs/api'
 import { Callback } from '@/types/others/callback'
 import { API_URLS } from '@/configs/api/endpoint'
 import { EditCurrentUserPayload, LoginPayload, RegisterPayload } from '@/configs/api/payload'
-import {auth,provider} from "@/configs/GoogleAuth/config";
-import { signInWithPopup } from 'firebase/auth';
+import { auth, provider } from '@/configs/GoogleAuth/config'
+import { signInWithPopup } from 'firebase/auth'
 import { LoginResponse } from '@/configs/api/response'
 
 const initialState: AuthState = {
@@ -107,12 +107,12 @@ function useAuthReducer(_state = initialState) {
   const errorMessagesRef = useRef<string[]>([])
   const errorMessagesKeyRef = useRef('')
 
-  const loginWithGoogle = async(cb?: Callback)=>{
+  const loginWithGoogle = async (cb?: Callback) => {
     dispatch({ type: AuthAction.AUTH_ACTION_PENDING })
-    signInWithPopup(auth,provider).then((data)=>{
-      const email = data.user.email||""
-      const username = data.user.displayName||"";
-      const password ="password"
+    signInWithPopup(auth, provider).then(data => {
+      const email = data.user.email || ''
+      const username = data.user.displayName || ''
+      const password = 'password'
       register(
         { user: { email, password, username } },
         {
@@ -124,7 +124,6 @@ function useAuthReducer(_state = initialState) {
             errorMessagesRef.current = [...errorMessagesRef.current, ...errors]
             errorMessagesKeyRef.current = errorsKey
             console.log(errorsKey)
-            
           },
         }
       )
@@ -134,7 +133,7 @@ function useAuthReducer(_state = initialState) {
           onSuccess: (result: LoginResponse) => {
             errorMessagesRef.current = []
             localStorage.setItem('token', result.user.token)
-            
+
             window.location.reload()
           },
           onError: ([errorsKey, errors]) => {
@@ -143,11 +142,12 @@ function useAuthReducer(_state = initialState) {
           },
         }
       )
-      
+      dispatch({ type: AuthAction.AUTH_ACTION_PENDING })
+      cb?.onSuccess?.(data)
     })
   }
 
-  return { state, login, register, getCurrentUser, editCurrentUser , loginWithGoogle}
+  return { state, login, register, getCurrentUser, editCurrentUser, loginWithGoogle }
 }
 
 export const AuthContext = createContext<ReturnType<typeof useAuthReducer>>({
@@ -156,7 +156,7 @@ export const AuthContext = createContext<ReturnType<typeof useAuthReducer>>({
   register: async () => {},
   getCurrentUser: async () => {},
   editCurrentUser: async () => {},
-  loginWithGoogle:async ()=>{},
+  loginWithGoogle: async () => {},
 })
 
 interface AuthProviderProps {
